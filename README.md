@@ -34,8 +34,8 @@ It is assumed that you have the following prerequisites installed:
 	docker pull purestake/moonbeam:v0.29.0
 	```
 
-* Add local moonbeam node as network in hardhat config
-	* edit packages/hardhat/hardhat.config.js, somewhere in `networks: { }` add:
+* edit Hardhat conf (`packages/hardhat/hardhat.config.js`)
+	* Add local moonbeam node as network in hardhat config
 		```javascript
 		// our local moonbeam node
 		localMoonbeam: {
@@ -47,19 +47,22 @@ It is assumed that you have the following prerequisites installed:
 			},
 		},
 		```
-		* set `const defaultNetwork = "localMoonbeam";` (line 28)
-		* set DEBUG = true (we want it to print out the `deployer` address) (line 311)
+	* set `const defaultNetwork = "localMoonbeam";` (line 28)
+	* set DEBUG = true (we want it to print out the `deployer` address) (line 311)
+
+	
+	* set `const mnemonic = "bottom drive obey lake curtain smoke basket hold race lonely fit walk";` (line 388)
+	  This causes Hardhat to use the same accounts as the ones that are pre-funded in a Moonbeam dev node,
+	  ref. https://github.com/PureStake/moonbeam/#prefunded-development-addresses
 
 * Generate privkey
+	(TODO: needed if we set mnemonic?)
 	```bash
 	# run yarn generate to generate mnemonic for deployer. note that this is the "generate" task found in hardhat.config.js
+	export NODE_OPTIONS=--openssl-legacy-provider # may need
 	yarn generate
 	# copy 'privateKey' and 'Account Generated as' address
 	```
-* Send yourself some money
-	* TODO: show how to run UI (and what about https vs ws?)
-* Compile with hardhat
-	* (remove? handled by deploy?)
 
 * Run Moonbeam
 	Moonbeam can easily be run on Linux, but we use Docker to make it painless to run cross-platform.
@@ -86,10 +89,16 @@ It is assumed that you have the following prerequisites installed:
 	--dev --ws-external --rpc-external
 	```
 
-* Prepare PowDAO.sol
-	* (TODO: explain the interesting bits here)
-	* review packages/hardhat/deploy/00_deploy_your_contract.js
-	* (TODO: replace keys)
+* Edit `packages/hardhat/contracts/PowDAO.sol`
+	* Add one or more keys from Moonbeam prefunded accounts
+	* Replace addresses in `const members = [..]` (line 8)
+	* E.g.:
+	```javascript
+	const members = [
+		"0xf24FF3a9CF04c71Dbc94D0b566f7A27B94566cac", // Alith
+		"0x3Cd0A705a2DC65e5b1E1205896BaA2be8A07c6e0", // Baltathar
+	];
+	```
 
 * Deploy
 	```bash
@@ -101,7 +110,7 @@ It is assumed that you have the following prerequisites installed:
 	yarn deploy
 	```
 
-* Modify MetaMask's RPC 
+* Modify MetaMask's RPC and add prefunded accounts
 	* TODO:
 
 * Interact
