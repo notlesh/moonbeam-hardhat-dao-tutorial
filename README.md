@@ -110,8 +110,19 @@ It is assumed that you have the following prerequisites installed:
 	yarn deploy
 	```
 
-* Modify MetaMask's RPC and add prefunded accounts
-	* TODO:
+* Modify MetaMask to Add Network and Import Dev Accounts
+	* Add Dev Network
+		:warning: Matamask will complain if it can't connect to the RPC you specify, so you will need Moonbeam running
+		![image](https://user-images.githubusercontent.com/2967426/221322347-8a424db9-2d91-414a-9782-3955670072dc.png)
+		![image](https://user-images.githubusercontent.com/2967426/221322445-c7ef4972-24bf-4d0a-9773-384fa6da6ecf.png)
+		![image](https://user-images.githubusercontent.com/2967426/221322383-a88b3760-6ea5-4b41-adf4-6c57d833edff.png)
+	* Add Dev Accounts
+		![image](https://user-images.githubusercontent.com/2967426/221322466-e8316b57-f6ac-4061-b7cc-8527d8d38fa4.png)
+		![image](https://user-images.githubusercontent.com/2967426/221322485-ea31516b-740b-469c-a0f6-075a12db7dbb.png)
+		Alith: `0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133`
+		Baltathar: `0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b`
+		More: https://github.com/PureStake/moonbeam/#prefunded-development-addresses
+	
 
 * Interact
 
