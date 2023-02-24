@@ -34,18 +34,25 @@ It is assumed that you have the following prerequisites installed:
 	docker pull purestake/moonbeam:v0.29.0
 	```
 
-* Prepare PowDAO.sol
-	* (TODO: explain the interesting bits here)
-	* review packages/hardhat/deploy/00_deploy_your_contract.js
-	* (TODO: replace keys)
-
 * Add local moonbeam node as network in hardhat config
-	* edit packages/hardhat/hardhat.config.js
-		* Add localMoonbeam: {/*...*/} (TODO)
-		* set `const defaultNetwork = "localMoonbeam";`
-		* set DEBUG = true (we want it to print out the `deployer` address)
+	* edit packages/hardhat/hardhat.config.js, somewhere in `networks: { }` add:
+		```javascript
+		// our local moonbeam node
+		localMoonbeam: {
+			url: "http://127.0.0.1:9933",
+			gasPrice: 10000000000, // 10 gwei (10 billion)
+			chainId: 1281,
+			accounts: {
+				mnemonic: mnemonic(),
+			},
+		},
+		```
+		* set `const defaultNetwork = "localMoonbeam";` (line 28)
+		* set DEBUG = true (we want it to print out the `deployer` address) (line 311)
+
 * Generate privkey
 	```bash
+	# run yarn generate to generate mnemonic for deployer. note that this is the "generate" task found in hardhat.config.js
 	yarn generate
 	# copy 'privateKey' and 'Account Generated as' address
 	```
@@ -78,6 +85,12 @@ It is assumed that you have the following prerequisites installed:
 	purestake/moonbeam:v0.29.0 ^
 	--dev --ws-external --rpc-external
 	```
+
+* Prepare PowDAO.sol
+	* (TODO: explain the interesting bits here)
+	* review packages/hardhat/deploy/00_deploy_your_contract.js
+	* (TODO: replace keys)
+
 * Deploy
 	```bash
 	# chain needs to be running, so either:
