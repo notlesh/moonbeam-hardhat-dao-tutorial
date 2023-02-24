@@ -119,9 +119,10 @@ It is assumed that you have the following prerequisites installed:
 	* Add Dev Accounts
 		![image](https://user-images.githubusercontent.com/2967426/221322466-e8316b57-f6ac-4061-b7cc-8527d8d38fa4.png)
 		![image](https://user-images.githubusercontent.com/2967426/221322485-ea31516b-740b-469c-a0f6-075a12db7dbb.png)
-		Alith: `0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133`
-		Baltathar: `0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b`
-		More: https://github.com/PureStake/moonbeam/#prefunded-development-addresses
+
+		* Alith: `0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133`
+		* Baltathar: `0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b`
+		* More: https://github.com/PureStake/moonbeam/#prefunded-development-addresses
 	
 
 * Interact
