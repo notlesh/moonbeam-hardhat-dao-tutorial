@@ -145,7 +145,15 @@ These are the same as found in `scaffold-eth` with the addition of Docker to hel
 	# kicks off the web UI
 	yarn start
 	```
-	* TODO: 
+
+	Challenges:
+
+	* Test membership
+	* Add member
+	* Process Proposal
+	* Kick member
+	* Request and receive a payout
+
 
 ## References
 
