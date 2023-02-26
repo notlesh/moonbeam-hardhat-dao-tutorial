@@ -1,23 +1,28 @@
 # Build and Deploy a DAO on Moonbeam with Hardhat
 
-This repository contains instructions for deploying a test DAO project to a local Moonbeam node
-using Hardhat.
+This repository contains instructions for deploying a test DAO project to a local [Moonbeam](https://moonbeam.network/) node
+using [Hardhat](https://hardhat.org/).
+
+We start with [scaffold-eth](https://github.com/scaffold-eth/scaffold-eth), a very complete Ethereum project template, and modify it to work with Moonbeam.
+Then we deploy its sample "PowDAO" project and explore it.
 
 This is inspired by [Drnutsu's tutorial](https://medium.com/mates-moonbeam/build-your-first-dao-and-deploy-it-to-moonbeam-network-part-3-deploy-to-moonbeam-4bfa38fe1c44)
 on a similar topic.
 
 ## Prerequisites
 
-It is assumed that you have the following prerequisites installed:
+It is assumed that you have the following prerequisites installed.
+These are the same as found in `scaffold-eth` with the addition of Docker to help us run Moonbeam without worrying about our OS environment.
 
 * git
 * node
-* yarn or npm
+* yarn (`npm i --global yarn`)
 * [docker](https://docs.docker.com/get-docker/)
+* [MetaMask](https://metamask.io/)
 
 ## Tutorial
 
-* Clone scaffold-eth
+* Clone scaffold-eth's `simple-DAO-proposals` branch:
 	```bash
 	# this repo uses different branches for different projects
 	# so if you want to explore it, look at the different branches
@@ -29,12 +34,14 @@ It is assumed that you have the following prerequisites installed:
 	```
 
 * Prepare Moonbeam
-	This can take some time to download, so we'll kick that off now
+
+	This can take some time to download, so we'll kick that off now (e.g. in a new terminal).
 	```bash
 	docker pull purestake/moonbeam:v0.29.0
 	```
 
 * edit Hardhat conf (`packages/hardhat/hardhat.config.js`)
+	* See [Hardhat's Config documentation](https://hardhat.org/hardhat-runner/docs/config) for more details
 	* Add local moonbeam node as network in hardhat config
 		```javascript
 		// our local moonbeam node
@@ -52,16 +59,15 @@ It is assumed that you have the following prerequisites installed:
 
 	
 	* set `const mnemonic = "bottom drive obey lake curtain smoke basket hold race lonely fit walk";` (line 388)
-	  This causes Hardhat to use the same accounts as the ones that are pre-funded in a Moonbeam dev node,
-	  ref. https://github.com/PureStake/moonbeam/#prefunded-development-addresses
+	  This causes Hardhat to use the same accounts as the ones that are [pre-funded in a Moonbeam dev node](https://github.com/PureStake/moonbeam/#prefunded-development-addresses).
+	  `TODO: find a proper way to integrate these accounts`
 
 * Generate privkey
-	(TODO: needed if we set mnemonic?)
 	```bash
 	# run yarn generate to generate mnemonic for deployer. note that this is the "generate" task found in hardhat.config.js
 	export NODE_OPTIONS=--openssl-legacy-provider # may need
 	yarn generate
-	# copy 'privateKey' and 'Account Generated as' address
+	# ensure that printed account matches Alith, or copy account if using different mnemonic
 	```
 
 * Run Moonbeam
@@ -124,11 +130,14 @@ It is assumed that you have the following prerequisites installed:
 		* Alith: `0x5fb92d6e98884f76de468fa3f6278f8807c48bebc13595d45af5bdc4da702133`
 		* Baltathar: `0x8075991ce870b93a8870eca0c0f91913d12f47948ca0fd25b49c6fa7cdbeee8b`
 		* More: https://github.com/PureStake/moonbeam/#prefunded-development-addresses
-	
 
 * Interact
 
-	Change port used for RPC:
+	At this point, we have our Moonbeam node running with a dev chain deployed.
+	We also have the PowDAO contract deployed with Alith and Baltithar as initial members, and we have these accounts in MetaMask.
+	Now we will deploy the frontend.
+
+	Change port used for RPC (Moonbeam defaults to port 9933 rather than 8545):
 
 	```bash
 	# replace 8545 with 9933 in packages/react-app/src/constants.js
@@ -143,3 +152,5 @@ It is assumed that you have the following prerequisites installed:
 * [Moonbeam](https://moonbeam.network)
 * [Polkadot](https://polkadot.network/)
 * [Hardhat](https://hardhat.org/)
+* [scaffold-eth](https://github.com/scaffold-eth/scaffold-eth)
+* [MetaMask](https://metamask.io/)
