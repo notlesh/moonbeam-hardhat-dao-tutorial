@@ -71,6 +71,7 @@ These are the same as found in `scaffold-eth` with the addition of Docker to hel
 	```
 
 * Run Moonbeam
+
 	Moonbeam can easily be run on Linux, but we use Docker to make it painless to run cross-platform.
 
 	Full documentation: https://docs.moonbeam.network/builders/get-started/networks/moonbeam-dev/
@@ -95,7 +96,7 @@ These are the same as found in `scaffold-eth` with the addition of Docker to hel
 	--dev --ws-external --rpc-external
 	```
 
-* Edit `packages/hardhat/contracts/PowDAO.sol`
+* Edit `packages/hardhat/deploy/00_deploy_your_contract.js`
 	* Add one or more keys from Moonbeam prefunded accounts
 	* Replace addresses in `const members = [..]` (line 8)
 	* E.g.:
